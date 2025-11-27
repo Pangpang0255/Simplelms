@@ -1,0 +1,27 @@
+content_id,user_id,comment
+2,4,Penjelasan tentang Node.js sangat jelas! Sangat membantu untuk pemula seperti saya
+3,5,Middleware di Express agak membingungkan bisa dijelaskan lebih detail pak?
+4,6,Django ORM-nya powerful sekali! Lebih mudah dari raw SQL
+5,7,REST API materinya lengkap ada contoh authentication-nya juga
+7,4,HTML5 semantic tags benar-benar membuat code lebih rapi dan terstruktur
+8,5,Async await di JavaScript modern sangat memudahkan handling promise
+9,8,React hooks mengubah cara saya coding! Lebih clean dan reusable
+10,9,Vue.js lebih mudah dipelajari dibanding React menurut saya
+12,5,Pandas library sangat powerful untuk data manipulation
+13,6,Machine learning konsepnya menantang tapi seru untuk dipelajari!
+14,10,Decision tree mudah dipahami untuk klasifikasi data
+17,6,Neural networks materinya dalam sekali perlu banyak latihan
+18,7,Deep learning dengan CNN hasilnya amazing untuk image recognition
+19,8,NLP sentiment analysis bisa dipakai untuk analisis social media
+22,4,Microservices architecture pattern yang bagus untuk scalability
+23,9,Docker memudahkan deployment dan environment consistency
+24,10,Kubernetes steep learning curve tapi worth it untuk production
+27,5,Symmetric cryptography AES masih aman sampai sekarang
+28,8,Public key cryptography konsepnya genius sekali
+29,9,Blockchain technology bukan cuma untuk crypto ternyata banyak aplikasi lain
+30,10,Smart contract di Ethereum membuka banyak kemungkinan baru
+2,5,Pak untuk instalasi Node.js di Windows ada issue tidak?
+3,6,Minta rekomendasi tutorial tambahan untuk Express.js dong
+12,11,Dataset untuk praktikum bisa didownload dimana pak?
+17,7,Apakah ada prerequisite math yang harus dikuasai untuk neural networks?
+22,11,Best practice untuk microservices communication apa ya pak?
