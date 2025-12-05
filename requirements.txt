@@ -1,2 +1,5 @@
 django
 psycopg2-binary
+pillow
+django-ninja
+django-silk
