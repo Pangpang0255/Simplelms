@@ -3,3 +3,4 @@ psycopg2-binary
 pillow
 django-ninja
 django-silk
+django-ninja-simple-jwt

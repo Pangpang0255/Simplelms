@@ -3,6 +3,12 @@ from pydantic import field_validator
 import re
 from .models import User, CourseMember, CourseContent, Comment, Course
 from typing import List
+import sys
+import os
+
+# Add parent directory to path to import api
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from api import apiAuth
 
 apiv1 = NinjaAPI()
 
@@ -112,3 +118,52 @@ class UserSchema(Schema):
 def list_users(request):
     users = User.objects.all()
     return users
+
+class CourseMemberOut(Schema):
+    id: int
+    course_name: str
+    user_username: str
+    role: str
+
+class CommentIn(Schema):
+    content_id: int
+    comment: str
+
+@apiv1.get('/mycourses/', auth=apiAuth, response=List[CourseMemberOut])
+def getMyCourses(request):
+    user_id = User.objects.get(pk=request.user.id)
+    mycourses = CourseMember.objects.filter(user_id=user_id)\
+        .select_related('course_id', 'user_id')
+    return [
+        CourseMemberOut(
+            id=cm.id,
+            course_name=cm.course_id.name,
+            user_username=cm.user_id.username,
+            role=cm.role
+        ) for cm in mycourses
+    ]
+
+@apiv1.post('/course/{id}/enroll/', auth=apiAuth, response=CourseMemberOut)
+def courseEnrollment(request, id: int):
+    user_id = User.objects.get(pk=request.user.id)
+    course = Course.objects.get(pk=id)
+    enrollment = CourseMember.objects.create(user_id=user_id, course_id=course)
+    return CourseMemberOut(
+        id=enrollment.id,
+        course_name=enrollment.course_id.name,
+        user_username=enrollment.user_id.username,
+        role=enrollment.role
+    )
+
+@apiv1.post('/komen/', auth=apiAuth)
+def postComment(request, data: CommentIn):
+    user_id = User.objects.get(pk=request.user.id)
+    content_id = CourseContent.objects.filter(id=data.content_id).first()
+    if not content_id:
+        return {"status": "KONTEN TIDAK DITEMUKAN"}
+    coursemember = CourseMember.objects.filter(user_id=user_id, course_id=content_id.course_id)
+    if coursemember.exists():
+        Comment.objects.create(comment=data.comment, user_id=user_id, content_id=content_id)
+        return {"status": "berhasil"}
+    else:
+        return {"status": "berhasil "}
